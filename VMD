@@ -1,0 +1,34 @@
+How to use VMD
+
+VMD is a software, we can use for RMSD calculation
+
+For validation of Docking methodology we need to compare the cristalized-ligand with the re-dock ligand.
+
+first: open VMD in the folder with ligand_out.pdbqt Vina results.
+split the file with
+
+bash
+vina_split --input ligand_out.pdbqt
+
+this will generate nine files, one for each conformer
+ligand_out_1.pdbqt .......
+
+transform in .mol2
+
+bash
+obabel -i pdbqt ligand_out_*.pdbqt -o mol2 ligand_out_.mol2 -m
+
+open VMD
+bash
+vmd
+
+file >  new molecule > browser > load
+extensions > analysis > RMSD calculator
+
+write
+all > clink on > aling > RMSD
+
+interpretation
+RMSD < 2  - perfect
+RMSD 2-3  - acceptable
+RMSD >3   - Not good
