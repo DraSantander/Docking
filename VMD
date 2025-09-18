@@ -2,7 +2,7 @@ How to use VMD
 
 VMD is a software, we can use for RMSD calculation
 
-For validation of Docking methodology we need to compare the cristalized-ligand with the re-dock ligand.
+For validation of Docking methodology we need to compare the cristalized-ligand with the re-docked ligand.
 
 first: open VMD in the folder with ligand_out.pdbqt Vina results.
 split the file with
