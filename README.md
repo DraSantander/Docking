@@ -1,4 +1,5 @@
 Docking Vina Project
+
 This project demonstrates a computational molecular docking workflow using AutoDock Vina. Molecular docking predicts how a small molecule (ligand) binds to a target protein receptor. This guide covers the essential preparation steps using Avogadro (for the ligand) and UCSF Chimera (for the protein).
 
 1. Ligand Preparation with Avogadro
@@ -33,23 +34,21 @@ Open the Protein: Download a .pdb file for your target protein (e.g., protein.pd
 
 Clean the Structure:
 
-Remove water molecules and any unwanted heteroatoms (e.g., solvents, ions) that are not part of the binding site. Select them, then go to Actions > Atoms/Bonds > Delete.
+Remove extrinsic water molecules and any unwanted heteroatoms (e.g., solvents, ions) that are not part of the binding site. Select them, then go to Actions > Atoms/Bonds > Delete.
 
-Add Hydrogens: Docking simulations require correct protonation states. Go to Tools > Structure Editing > AddH to add hydrogen atoms.
+in ADT (AutoDock tools)
 
-Add Charges: Go to Tools > Structure Editing > Add Charge. Use the AMBER ff14SB force field or a similar default option.
+Add Hydrogens: Docking simulations require correct protonation states. Edit > Hydrogens > Add.
 
-Define the Binding Site (Save the Box): You need to identify the residues that form the binding pocket. Often, this is known from literature or by locating a co-crystallized native ligand.
+Add Charges: Edit > Charges >  Use the Kollman force field or a similar default option.
 
 Save the Prepared Protein:
 
-Save the cleaned protein as a .pdb file (e.g., protein_clean.pdb).
+Save the cleaned protein as a .pdbqt file (e.g., protein_clean.pdbqt).
 
-Crucial Conversion: Just like the ligand, the protein must be converted to .pdbqt format. This can be done with Open Babel or, more reliably for proteins, with MGLTools (prepare_receptor4.py script).
+Crucial Conversion: Just like the ligand, the protein must be converted to .pdbqt format.
 
-bash
-python2 /path/to/mgltools/bin/prepare_receptor4.py -r protein_clean.pdb -o protein.pdbqt
-This step adds atom types and Gasteiger charges required by AutoDock Vina.
+Define the Binding Site (Save the Box): You need to identify the residues that form the binding pocket. Often, this is known from literature or by locating a co-crystallized native ligand.
 
 Next Steps: Running AutoDock Vina
 After preparing both files (protein.pdbqt and ligand.pdbqt), the next steps are:
@@ -57,7 +56,11 @@ After preparing both files (protein.pdbqt and ligand.pdbqt), the next steps are:
 Create a configuration file (config.txt) that specifies the center and size of the search box around your binding site.
 
 Run the Vina command to perform the docking simulation.
+open linux, at the folder where are protein.pdbqt, ligand.pdbqt and  config.txt
 
-Analyze the resulting poses in a visualization tool like UCSF Chimera or PyMOL.
+write 
+bash
+vina --config config.txt
+vina_split --input ligand_out.pdbqt 
 
 Detailed instructions for these steps will be provided in the next section.
